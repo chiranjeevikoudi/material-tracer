@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <div *ngIf="isError" class="row">
+    <div class="col-md-12">
+      <div>{{errorMessage}}</div>
+    </div>
+  </div>
+  <div *ngIf="isHistory" class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Material Name</th>
+          <th scope="col">Material Type</th>
+          <th scope="col">Supplier Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let request of requestsData">
+          <th scope="row">{{request.id}}</th>
+          <td>{{request.material_name}}</td>
+          <td>{{request.material_type}}</td>
+          <td>{{request.supplier_name}}</td>
+          <td>{{request.status}}</td>
+          <td>
+            <div>
+              <a *ngIf="request.status === 'Intiated' && userType === 'supplier'"
+                 (click)="requestAccepted(request.id)">
+                <span class="glyphicon glyphicon-ok text-success" style="padding-left: 10px;cursor: pointer"></span>
+              </a>
+              <a *ngIf="request.status === 'Intiated' && userType === 'supplier'"
+                 (click)="requestRejected(request.id)" style="padding-left: 10px;cursor: pointer">
+                <span class="glyphicon glyphicon-remove text-danger"></span>
+              </a>
+              <a (click)="redirectToRequestDetailsPage(request.id)" style="padding-left:10px;cursor: pointer">
+                <span class="glyphicon glyphicon-time text-primary"></span>
+              </a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="isNewRequest && userType==='manufacturer'" class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <form method="post" id="requestForm" enctype="multipart/form-data">
+        <table class="table">
+          <tr>
+            <td>Material Name</td>
+            <td> <input type="text" name="request_material_name" id="request_material_name"></td>
+          </tr>
+          <tr>
+            <td>Material Type</td>
+            <td><input type="text" name="request_material_type" id="request_material_type"></td>
+          </tr>
+          <tr>
+            <td>Manufacturer Email</td>
+            <td><input type="text" name="request_manfacturer_email" id="request_manfacturer_email"></td>
+          </tr>
+          <tr>
+            <td>Supplier Name</td>
+            <td><input type="text" name="request_supplier_name" id="request_supplier_name"></td>
+          </tr>
+          <tr>
+            <td>Supplier Email</td>
+            <td><input type="text" name="request_supplier_email" id="request_supplier_email"></td>
+          </tr>
+          <tr>
+            <td>Supplier Contact</td>
+            <td><input type="text" name="request_supplier_contact" id="request_supplier_contact"></td>
+          </tr>
+          <tr>
+            <td>Attachment</td>
+            <td><input type="file" id="request_attachment" name="request_attachment" accept="*"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="btn btn-success" type="submit">Submit</button></td>
+          </tr>
+        </table>
+        <!--Material Name: <input type="text" name="request_material_name" id="request_material_name"><br>
+        Material Type: <input type="text" name="request_material_type" id="request_material_type"><br>
+
+        Manufacturer Email: <input type="text" name="request_manfacturer_email" id="request_manfacturer_email"><br>
+
+        Supplier Name: <input type="text" name="request_supplier_name" id="request_supplier_name"><br>
+        Supplier Email: <input type="text" name="request_supplier_email" id="request_supplier_email"><br>
+        Supplier Contact: <input type="text" name="request_supplier_contact" id="request_supplier_contact"><br>
+        Attachment: <input type="file" id="request_attachment" name="request_attachment" accept="*"><br>
+        <button type="submit">Submit</button>-->
+      </form>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <div *ngIf="isBOMView" class="row">
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <table class="table">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Material Name</th>
+            <th scope="col">Material Type</th>
+            <th scope="col">Supplier Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of requestsData">
+            <th scope="row">{{request.id}}</th>
+            <td>{{request.material_name}}</td>
+            <td>{{request.material_type}}</td>
+            <td>{{request.supplier_name}}</td>
+            <td>{{request.status}}</td>
+            <td>
+              <a *ngIf="(request.status !== 'Intiated' && request.status !== 'Request accepted by supplier' && request.status !== 'Request rejected  by supplier')" class="text-primary" (click)="redirectToRequestBOMDetailsPage(request.id)" style="padding-left:10px;cursor: pointer">View BOM</a>
+              <span *ngIf="((request.status === 'Intiated' || request.status === 'Request accepted by supplier' || request.status === 'Request rejected  by supplier')&&(userType === 'manufacturer')) " style="padding-left:10px;">No BOM</span>
+              <a *ngIf="((request.status === 'Request accepted by supplier' )&&(userType === 'supplier'))" class="text-primary" (click)="redirectToRequestBOMSubmitPage(request.id)" style="padding-left:10px;cursor: pointer">
+                Submit BOM
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isGraphMapView" class="row">
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <table class="table">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Material Name</th>
+            <th scope="col">Material Type</th>
+            <th scope="col">Supplier Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of requestsData">
+            <th scope="row">{{request.id}}</th>
+            <td>{{request.material_name}}</td>
+            <td>{{request.material_type}}</td>
+            <td>{{request.supplier_name}}</td>
+            <td>{{request.status}}</td>
+            <td>
+              <a *ngIf="(request.status === 'BOM submitted  by supplier' || request.status === 'Quote approved  by manufacturer' || request.status === 'Quote rejected  by manufacturer')" class="text-primary" (click)="redirectToRequestGraphMapPage(request.id)" style="padding-left:10px;cursor: pointer">View Map</a>
+              <span *ngIf="((request.status !== 'BOM submitted  by supplier' && request.status !== 'Quote approved  by manufacturer' && request.status !== 'Quote rejected  by manufacturer')) " style="padding-left:10px;">No Map</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+  <!--<a class="navbar-brand" href="#"><img src="assets/images/icon.png" height="50px" width="80px"></a>-->
+  <a class="navbar-brand" href="#">Material Tracer</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="./" routerLinkActive="active"
+        >Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./" routerLinkActive="active"
+        >About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./" routerLinkActive="active"
+        >Our Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./" routerLinkActive="active">Contact Us</a>
+      </li>
+    </ul>
+    <div *ngIf="!userLoggedIn" class="div-inline-block my-2 my-lg-0" >
+      <a class="btn btn-primary my-2 my-sm-0 active" type="button" routerLink="/login" >Login</a> &nbsp;&nbsp;
+      <a class="btn btn-success my-2 my-sm-0" type="button"  routerLink="/register" >Register</a>
+    </div>
+    <div *ngIf="userLoggedIn && loggedInUser" class="nav-item white" style="color:white">
+      Welcome {{loggedInUser.name}}
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="!userLoggedIn" style="padding: 50px" class="div-inline-block my-2 my-lg-0" >
+  <h1 style="text-align: center">Welcome to Material tracer</h1>
+</div>
+
+<div *ngIf="showLoginForm" class="container-fluid" style="padding: 50px">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <table class="table">
+        <tr>
+          <td>Email</td>
+          <td> <input type="text" name="email" id="login_user_email" [(ngModel)]="login_user_email"></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="text" name="password" id="login_user_password" [(ngModel)]="login_user_password"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button class="btn btn-primary" type="button" (click)="login()">Login</button></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="showRegisterForm" class="container-fluid" style="padding: 50px">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <table class="table">
+        <tr>
+          <td>Name</td>
+          <td> <input type="text" name="name" id="register_user_name" [(ngModel)]="register_user_name"></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" name="email" id="register_user_email" [(ngModel)]="register_user_email"></td>
+        </tr>
+
+        <tr>
+          <td>Password</td>
+          <td><input type="text" name="password" id="register_user_password" [(ngModel)]="register_user_password"></td>
+        </tr>
+        <tr>
+          <td>Contact</td>
+          <td><input type="text" name="contact" id="register_user_contact" [(ngModel)]="register_user_contact"></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td><input input id="register_user_address" name="address" class="controls" type="text" placeholder="Search Box" [(ngModel)]="register_user_address">
+            <input type="text" name="type" id="register_user_geopoint" hidden [(ngModel)]="register_user_geopoint"></td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td><input type="text" name="type" id="register_user_type" [(ngModel)]="register_user_type"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button class="btn btn-success" type="button" (click)="registerUser()">Register</button></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="errorOccurred" class="container-fluid" style="padding: 100px;color: red">
+  {{errorMessage}}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "Client": {
+    "dataSource": "clientsMongoDB",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "userLogin": true,
+          "logout": true,
+          "register": true,
+          "generateAccessToken": true
+        }
+      }
+    }
+  },
+  "Manufacturer": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Counters": {
+    "dataSource": "clientsMongoDB",
+    "public": false
+  },
+  "Request": {
+    "dataSource": "clientsMongoDB",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "postRequest": true,
+          "getRequests": true,
+          "getRequestById": true,
+          "updateRequestStatus": true,
+          "updateAttachmentFileName": true,
+          "postBOMDocument": true,
+          "getBOMDocumentRequestById": true,
+          "getRequestGraphMapGeoPointsById": true
+        }
+      }
+    }
+  },
+  "Attachment": {
+    "dataSource": "storage",
+    "public": true
+  }
+}

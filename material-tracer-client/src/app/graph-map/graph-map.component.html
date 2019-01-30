@@ -1,0 +1,11 @@
+<div class="container-fluid" style="padding-top: 20px">
+  <div *ngIf="isError" class="row">
+    <div class="col-md-12">
+      <div>{{errorMessage}}</div>
+    </div>
+  </div>
+  <div *ngIf="isGraphMapDetail" id="map"></div>
+
+</div>
+
+

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div *ngIf="isError" class="row">
+    <div class="col-md-12">
+      <div>{{errorMessage}}</div>
+    </div>
+  </div>
+  <div *ngIf="isRequestDetail" class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Material Name</th>
+          <th scope="col">Material Type</th>
+          <th scope="col">Supplier Name</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let trail of requestsDetails.trail">
+          <th scope="row">{{requestsDetails.id}}</th>
+          <td>{{requestsDetails.material_name}}</td>
+          <td>{{requestsDetails.material_type}}</td>
+          <td>{{requestsDetails.supplier_name}}</td>
+          <td>{{trail[0]}}</td>
+          <td>{{trail[1] * 1000 | date:'dd/MM/yyyy HH:mm:ss'}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div *ngIf="isError" class="row">
+    <div class="col-md-12">
+      <div>{{errorMessage}}</div>
+    </div>
+  </div>
+  <div *ngIf="isRequestBOMSubmit && userType==='supplier'" class="row">
+    <div class="col-md-12">
+      <form method="post" id="requestBOMSubmitForm" enctype="multipart/form-data">
+        <table  class="table">
+          <thead>
+            <tr>
+              <th scope="col">Part Name[*]</th>
+              <th scope="col">Supplier Name[*]</th>
+              <th scope="col">Supplier Address[*]</th>
+              <th scope="col">Dependent Supplier Name</th>
+              <th scope="col">Dependent Supplier Address</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let row of rows; let i = index">
+            <td><input type="text" name="request_part_name" id="request_part_name_{{i}}" [(ngModel)]="row.part_name" value="{{row.part_name}}"></td>
+            <td><input type="text" name="request_supplier_name" id="request_supplier_name_{{i}}" [(ngModel)]="row.supplier_name"></td>
+            <td>
+              <div>
+                <input type="text" name="request_supplier_address" id="request_supplier_address_{{i}}" [(ngModel)]="row.supplier_address" placeholder="Address">
+                <input type="text" name="request_supplier_geopoint" id="request_supplier_geopoint_{{i}}" hidden [(ngModel)]="row.supplier_geopoint">
+              </div>
+            </td>
+            <td><input type="text" name="request_dependant_supplier_name" id="request_dependant_supplier_name{{i}}" [(ngModel)]="row.dependant_supplier_name"></td>
+            <td>
+              <div>
+                <input type="text" name="request_dependant_supplier_address" id="request_dependant_supplier_address_{{i}}" [(ngModel)]="row.dependant_supplier_address" placeholder="Address">
+                <input type="text" name="request_dependant_supplier_geopoint" id="request_dependant_supplier_geopoint_{{i}}" hidden [(ngModel)]="row.dependant_supplier_geopoint">
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div>Amount : <input type="text" name="amount" id="amount" [(ngModel)]="amount"></div>
+        <table  class="table">
+          <thead>
+          <tr>
+            <td><button type="button" class="btn btn-primary" id="add_row" (click)="addRowToTable()">+Add Row</button></td>
+            <td><button type="button" class="btn btn-primary" id="delete_row" (click)="deleteRowFromTable()">*Delete Row</button></td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td>   </td>
+            <td><button type="submit" class="btn btn-primary" id="save_data" (click)="postData()">+Save Data</button></td>
+            <td><button type="button" class="btn btn-primary" id="close_form" (click)="closeBOMForm()">Close</button></td>
+          </tr>
+          </thead>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

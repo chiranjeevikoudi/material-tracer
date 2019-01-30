@@ -1,0 +1,89 @@
+{
+  "validationError": {
+    "statusCode": 422,
+    "name": "ValidationError"
+  },
+  "registrationSuccess": {
+    "statusCode": 200,
+    "name": "Registration"
+  },
+  "noUsers": {
+    "statusCode": 400,
+    "name": "Error"
+  },
+  "loginError": {
+    "statusCode": 400,
+    "name": "LoginError",
+    "message": "email or password is incorrect"
+  },
+  "fieldsError": {
+    "statusCode": 400,
+    "name": "FieldsError",
+    "message": "Provide valid parameters"
+  },
+  "logoutError": {
+    "statusCode": 400,
+    "name": "LogoutError",
+    "message": "Provide valid AcccessToken"
+  },
+  "logoutSuccess": {
+    "statusCode": 200,
+    "name": "LogoutSuccess",
+    "message": "Successfully Logged Out"
+  },
+  "typeError": {
+    "statusCode": 400,
+    "name": "TypeError",
+    "message": "Param is not well formed"
+  },
+  "interestError": {
+    "statusCode": 404,
+    "name": "InterestError",
+    "message": "Interest should not be empty"
+  },
+  "serverError": {
+    "statusCode": 500,
+    "name": "ServerError",
+    "message": "Some Internal server error occurred"
+  },
+  "dataNotFoundError":{
+    "statusCode": 404,
+    "name": "DataNotFound",
+    "message": "Data not found"
+  },
+  "invalidRequest":{
+    "statusCode": 400,
+    "name": "InvalidRequest",
+    "message": "request is invalid"
+  },
+  "dataAlreadyExistError":{
+    "statusCode": 422,
+    "name": "DataAlreadyExist",
+    "message": "Data is already exist"
+  },
+  "requestSubmissionSuccess":{
+    "statusCode": 200,
+    "name": "RequestSubmitted",
+    "message": "request successfully submitted"
+  },
+  "requestStatusUpdateSuccess":{
+    "statusCode": 200,
+    "name": "RequestStatusUpdate",
+    "message": "request status successfully updated"
+  },
+  "requestAttachmentNameUpdateSuccess":{
+    "statusCode": 200,
+    "name": "RequestAttachmentNameUpdate",
+    "message": "request attachment name successfully updated"
+  } ,
+  "requestBOMDocumentUpdateSuccess":{
+    "statusCode": 200,
+    "name": "RequestBOMDocumentUpdate",
+    "message": "request billing of material document successfully updated"
+  },
+  "requestSubmissionFail":{
+    "statusCode": 500,
+    "name": "RequestSubmission",
+    "message": "request not submitted"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "clientsMongoDB": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "client_management",
+    "password": "",
+    "name": "clientsMongoDB",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./files"
+  }
+}
